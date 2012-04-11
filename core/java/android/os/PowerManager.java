@@ -949,6 +949,21 @@ public final class PowerManager {
             throw e.rethrowFromSystemServer();
         }
     }
+    /**
+     * Forces the device to wake up from sleep only if
+     * nothing is blocking the proximity sensor
+     *
+     * @see #wakeUp
+     *
+     * @hide
+     */
+    public void wakeUpWithProximityCheck(long time, String reason) {
+        try {
+            mService.wakeUpWithProximityCheck(time, reason, mContext.getOpPackageName());
+        } catch (RemoteException e) {
+            throw e.rethrowFromSystemServer();
+        }
+    }
 
     /**
      * Forces the device to start napping.
